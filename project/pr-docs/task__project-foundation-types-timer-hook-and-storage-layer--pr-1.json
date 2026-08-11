@@ -1,0 +1,45 @@
+{
+  "overview": "This PR establishes the non-UI foundation for MileMarker: TypeScript entity types (Run, Split, TimerState), a useTimer hook with requestAnimationFrame and Page Visibility API support, and a localStorage persistence layer for runs. All three pieces are prerequisite infrastructure before any UI screens can be built. No UI components are included.",
+  "summary_json": {
+    "Branch": "task/project-foundation-types-timer-hook-and-storage-layer",
+    "PR": "https://github.com/sarahroseanthony/MileMarker/pull/1",
+    "New types": "Split, Run, RunStatus, TimerState (src/types/index.ts)",
+    "New hook": "useTimer — start/pause/reset, rAF loop, Page Visibility API tab-switch handling",
+    "Storage key": "running_tracker_runs (localStorage)",
+    "Storage API": "loadRuns, saveRuns, saveRun, deleteRun, loadRun, clearAllRuns",
+    "Test runner": "Jest 29 + ts-jest + jsdom; path alias @/ -> src/",
+    "Breaking changes": "None; first PR"
+  },
+  "files_changed": [
+    {
+      "path": "project/jest.config.js",
+      "summary": "Configures Jest with jsdom environment, ts-jest transform, @/ path alias, and coverage collection from src."
+    },
+    {
+      "path": "project/package.json",
+      "summary": "Defines project dependencies (Next 14, React 18) and devDependencies (Jest, ts-jest, Testing Library, TypeScript 5, Tailwind) with test script."
+    },
+    {
+      "path": "project/src/hooks/useTimer.test.ts",
+      "summary": "Unit tests for useTimer covering start/pause/reset and rAF frame flushing using synchronous Jest mocks for requestAnimationFrame."
+    },
+    {
+      "path": "project/src/hooks/useTimer.ts",
+      "summary": "useTimer hook that tracks elapsed time via requestAnimationFrame, pauses/resumes on Page Visibility change, and exposes start/pause/reset controls."
+    },
+    {
+      "path": "project/src/storage/runsStorage.test.ts",
+      "summary": "Unit tests for the storage layer using a mock localStorage to verify CRUD operations and error handling."
+    },
+    {
+      "path": "project/src/storage/runsStorage.ts",
+      "summary": "localStorage persistence module implementing load, save, upsert, delete, and clear operations for Run arrays under a fixed storage key."
+    },
+    {
+      "path": "project/src/types/index.ts",
+      "summary": "Defines canonical TypeScript interfaces Split, Run, RunStatus, and TimerState used across the entire application."
+    }
+  ],
+  "extras": "Verify: run `npm test` inside project/ to confirm all hook and storage tests pass. Follow-up: UUID generation strategy for Run/Split ids is not yet defined — should be addressed before the first UI screen that creates runs.",
+  "fallback_text": "PR #1 for MileMarker adds the three foundational non-UI pieces needed before any screen work: (1) TypeScript interfaces for Split, Run, RunStatus, and TimerState in src/types/index.ts; (2) the useTimer custom hook using requestAnimationFrame for smooth elapsed-time tracking and the Page Visibility API to correctly handle tab switches without losing accumulated time; (3) a localStorage CRUD layer (loadRuns, saveRuns, saveRun, deleteRun, loadRun, clearAllRuns) keyed at 'running_tracker_runs'. Jest is configured with jsdom, ts-jest, and the @/ alias, and both the hook and storage module have full unit-test coverage. No UI components or breaking changes are introduced."
+}
