@@ -1,0 +1,15 @@
+{
+  "schema_version": "cofabric-product-binding-v1",
+  "subject": "product_repo",
+  "product_binding_id": "916c2e68-a1d2-433e-85b7-257d1865c4de",
+  "project_id": "12c91253-c66e-4fd5-afaa-03915404086b",
+  "controlled_by": {
+    "instance_repo_url": "https://github.com/daice-labs-certification/dandela-instance-12c91253-c66e-4fd5-afaa-03915404086b",
+    "instance_id": "618ea17d-5d3c-4754-a1b9-a016ed33eda5",
+    "instance_provider_repository_id": "github:daice-labs-certification/dandela-instance-12c91253-c66e-4fd5-afaa-03915404086b"
+  },
+  "product_roots": [
+    "."
+  ],
+  "last_bound_at": "2026-08-11T19:13:07.124Z"
+}
