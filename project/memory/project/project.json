@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "cofabric.memory.project.v2",
+  "name": "MileMarker",
+  "oneLineDescription": "Mobile-first web app for runners to track per-mile split times during and after a run.",
+  "whatItIs": "MileMarker is a purely client-side, mobile-first web application built with Next.js 14 and browser localStorage. It allows runners to manually record mile split times in real-time during an active run, view a live timer and growing split list while running, review a completion summary with pace stats when the run ends, and browse a history of all past runs with per-run detail views. There is no backend, no authentication, and no cloud sync in v1 — all data lives in the browser.",
+  "stack": [
+    {
+      "name": "Next.js",
+      "version": "^14.2.5",
+      "purpose": "App framework using App Router"
+    },
+    {
+      "name": "React",
+      "version": "^18.3.1",
+      "purpose": "UI rendering and component model"
+    },
+    {
+      "name": "react-dom",
+      "version": "^18.3.1",
+      "purpose": "React DOM renderer"
+    },
+    {
+      "name": "TypeScript",
+      "version": "^5.5.3",
+      "purpose": "Static typing with strict mode"
+    },
+    {
+      "name": "Tailwind CSS",
+      "version": "^3.4.6",
+      "purpose": "Utility-first styling"
+    }
+  ],
+  "externalIntegrations": [],
+  "coreUserFlows": [
+    "User taps Start Run on the home screen, then taps Mark Mile after each completed mile to record a split during an active run.",
+    "User taps End Run, confirms, and sees a completion summary with total time, distance, average pace, and fastest/slowest splits highlighted.",
+    "User taps Save Run on the summary screen to persist the run to localStorage and return to the home screen.",
+    "User navigates to History to browse past runs sorted by date and taps a run to view its full detail."
+  ],
+  "outOfScope": [
+    "User authentication and accounts",
+    "Cloud sync or backend database",
+    "GPS/location-based automatic mile detection",
+    "Social features (sharing, leaderboards)",
+    "Import/export functionality",
+    "Multiple distance units (miles only supported)",
+    "Workout planning or goal setting",
+    "Push notifications",
+    "Offline PWA capabilities (service worker)",
+    "Pause/resume functionality",
+    "Partial mile tracking",
+    "Run deletion from UI"
+  ],
+  "dataModel": [
+    {
+      "entity": "Run",
+      "purpose": "Represents a completed run stored in localStorage with timing and pace summary.",
+      "keyFields": [
+        "id",
+        "startTimestamp",
+        "endTimestamp",
+        "splits",
+        "totalDistance",
+        "totalTime",
+        "averagePace"
+      ]
+    },
+    {
+      "entity": "Split",
+      "purpose": "Represents a single recorded mile split within a run.",
+      "keyFields": [
+        "mileNumber",
+        "elapsedTime",
+        "splitTime"
+      ]
+    }
+  ],
+  "crossCuttingPrinciples": [
+    "All time values are stored and computed in milliseconds internally; formatted strings (MM:SS or HH:MM:SS) are produced only at the display layer.",
+    "No authentication exists in v1 — all data is local to the browser with no user identity.",
+    "Active run state is held in memory only and is lost if the browser tab is closed; completed runs are persisted to localStorage.",
+    "No external state management libraries are used — only React useState and useReducer.",
+    "No component libraries are used — Tailwind CSS utility classes are the sole styling mechanism.",
+    "All interactive touch targets must be a minimum of 48px; primary actions should be larger.",
+    "The app uses Next.js App Router with server components by default; interactive and timer components must add the 'use client' directive.",
+    "The dark theme base (bg-gray-950, text-white, text-orange-500 accent) applies consistently across all screens.",
+    "TypeScript strict mode is enabled; types are compile-time only with no runtime validation.",
+    "The app must be responsive from 320px width up with no complex animations to support low-end mobile devices."
+  ],
+  "specSummary": "MileMarker is a mobile-first web app for recreational runners who want to manually track per-mile split times during a run without any account or server dependency. The product is entirely client-side: Next.js 14 with App Router, TypeScript in strict mode, Tailwind CSS for styling, and browser localStorage as the sole persistence layer. There is no backend, no authentication, and no external API in v1. The core runtime loop is: the user starts a run from the home screen, watches a live elapsed-time timer, taps a large Mark Mile button after each mile to capture a split, and then ends the run to see a summary of total time, total distance in miles, average pace, and per-split times with the fastest and slowest splits visually highlighted. The user can save the run (written to localStorage) or discard it, then return to the home screen. A history list shows all saved runs sorted by most recent, and each run links to a detail view at /runs/[id]. Active run state lives in React memory only — navigating back to the home screen shows a Resume Run option, but closing the tab loses the active run. Key constraints across all features: touch targets must be at least 48px, high-contrast colors are required for outdoor readability, the minimum supported viewport width is 320px, all time math uses milliseconds with display formatting only at render time, and no external state libraries or component libraries are permitted."
+}

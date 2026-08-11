@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "cofabric.memory.scaffold.v1",
+  "fileTree": [
+    {
+      "path": "package.json",
+      "purpose": "Next.js 14, React 18, Tailwind CSS, TypeScript; dev/build/start/lint scripts",
+      "isEmpty": false
+    },
+    {
+      "path": "tsconfig.json",
+      "purpose": "Strict mode enabled, @/* path alias pointing to src/*, bundler module resolution",
+      "isEmpty": false
+    },
+    {
+      "path": "next.config.js",
+      "purpose": "Minimal empty Next.js config, no experimental flags",
+      "isEmpty": false
+    },
+    {
+      "path": "postcss.config.js",
+      "purpose": "Tailwind + autoprefixer PostCSS configuration",
+      "isEmpty": false
+    },
+    {
+      "path": "tailwind.config.js",
+      "purpose": "Scans src/app and src/components, system font stack extended",
+      "isEmpty": false
+    },
+    {
+      "path": "src/app/globals.css",
+      "purpose": "Tailwind directives, full-height html/body, overscroll-behavior none for mobile",
+      "isEmpty": false
+    },
+    {
+      "path": "src/app/layout.tsx",
+      "purpose": "Root layout with metadata (MileMarker), dark background (gray-950), white text body",
+      "isEmpty": false
+    },
+    {
+      "path": "src/app/page.tsx",
+      "purpose": "Branded landing page with MileMarker name/logo, orange accent, Start Run and History buttons (disabled placeholders)",
+      "isEmpty": true
+    },
+    {
+      "path": ".env.example",
+      "purpose": "Documents that no env vars are required for v1; placeholder comments for future backend services",
+      "isEmpty": false
+    },
+    {
+      "path": "pr-docs/.gitkeep",
+      "purpose": "Placeholder to track PR documentation directory",
+      "isEmpty": true
+    },
+    {
+      "path": "memory/.gitkeep",
+      "purpose": "Placeholder to track memory directory",
+      "isEmpty": true
+    },
+    {
+      "path": "memory/project/.gitkeep",
+      "purpose": "Placeholder to track memory/project directory",
+      "isEmpty": true
+    },
+    {
+      "path": "memory/task/.gitkeep",
+      "purpose": "Placeholder to track memory/task directory",
+      "isEmpty": true
+    },
+    {
+      "path": "memory/agent/.gitkeep",
+      "purpose": "Placeholder to track memory/agent directory",
+      "isEmpty": true
+    },
+    {
+      "path": "memory/context/.gitkeep",
+      "purpose": "Placeholder to track memory/context directory",
+      "isEmpty": true
+    }
+  ],
+  "libraryExports": [],
+  "existingRoutes": [
+    {
+      "type": "page",
+      "path": "/",
+      "file": "src/app/page.tsx",
+      "httpMethods": null,
+      "isEmpty": true
+    }
+  ],
+  "databaseState": {
+    "migrationsExist": false,
+    "tables": []
+  },
+  "intentionallyEmpty": [
+    {
+      "file": "src/app/page.tsx",
+      "intendedPurpose": "Home screen with functional Start Run / Resume Run toggle, History navigation, and active run in-memory context detection (Feature 8)"
+    }
+  ]
+}
